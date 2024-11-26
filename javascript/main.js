@@ -3,10 +3,10 @@
 
   /*----- state variables -----*/
 let gameState = {
-    dec: [],
+    deck: [],
     playerHand: [],
     playerScore: 0,
-    dealerScore: 0
+    dealerScore: 0,
     gamePhase: 'start!', 
     outcome: null
 
