@@ -9,7 +9,7 @@ const originalDeck = buildOriginalDeck();
 let shuffledDeck ;
 let playerHand = [];
 let dealerHand = [];
-let isPlayerTurn = true;
+// let isPlayerTurn = true;
 let balance = 5000
 let currentBet = 0;
 
@@ -29,6 +29,8 @@ document.querySelectorAll('.bet-btn').forEach(button => {
 });
 
 /*----- functions -----*/
+
+
 function getNewShuffledDeck() {
   const tempDeck = [...originalDeck];
   const newShuffledDeck = [];
@@ -52,6 +54,17 @@ function buildOriginalDeck() {
   return deck;
 }
 
+function placeBet(evt) {
+  const betAmount = parseInt(evt.target.dataset.amount);
+  if (betAmount > balance) {
+    messageEl.textContent = "Place Bet First!";
+    return;
+  }
+  currentBet += betAmount;
+  balance -= betAmount;
+  updateBetDisplay(); 
+  }
+
 function startGame() {
   if (currentBet === 0) {
     messageEl.textContent = "Place your bets!";
@@ -64,6 +77,35 @@ function startGame() {
   renderHands();
   messageEl.textContent = "Your turn! Hit or Stand?";
 }
+
+function initGame() {
+  
+  shuffledDeck = getNewShuffledDeck();
+  playerHand = [];
+  dealerHand = [];
+  currentBet = 0;
+  balance = 5000;  
+  isPlayerTurn = true;
+  messageEl.textContent = "Please place a bet to start the game.";
+  updateBetDisplay();
+  renderInitialDeckBacks();
+}
+
+function renderInitialDeckBacks() {
+  const initialCardCount = 2; 
+  let cardsHtml = '';
+  
+  
+  for (let i = 0; i < initialCardCount; i++) {
+    cardsHtml += `<div class="card back"></div>`;
+  }
+
+ 
+  playerHandContainer.innerHTML = cardsHtml;
+  dealerHandContainer.innerHTML = cardsHtml;
+}
+
+initGame();
 
 function renderHands() {
   renderDeckInContainer(playerHand, playerHandContainer);
@@ -82,17 +124,6 @@ function renderDeckInContainer(deck, container, hideFirstCard = false) {
   });
   container.innerHTML = cardsHtml;
 }
-
-function placeBet(evt) {
-  const betAmount = parseInt(evt.target.dataset.amount);
-  if (betAmount > balance) {
-    messageEl.textContent = "Place Bet First!";
-    return;
-  }
-  currentBet += betAmount;
-  balance -= betAmount;
-  updateBetDisplay(); 
-  }
 
   function updateBetDisplay() {
     balanceEl.textContent = balance;
