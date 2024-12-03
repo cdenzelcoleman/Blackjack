@@ -73,6 +73,7 @@ function startGame() {
   shuffledDeck = getNewShuffledDeck();
   playerHand = [shuffledDeck.pop(), shuffledDeck.pop()];
   dealerHand = [shuffledDeck.pop(), shuffledDeck.pop()];
+  dealerHand[0].isFaceDown = true;
   isPlayerTurn = true;
   renderHands();
   messageEl.textContent = "Your turn! Hit or Stand?";
@@ -116,7 +117,7 @@ function renderDeckInContainer(deck, container, hideFirstCard = false) {
   container.innerHTML = '';
   let cardsHtml = '';
   deck.forEach(function(card, idx) {
-    if (hideFirstCard && idx === 0) {
+    if (hideFirstCard && idx === 0 || card.isFaceDown) {
       cardsHtml += `<div class="card back"></div>`;
     } else {
       cardsHtml += `<div class="card ${card.face}"></div>`;
@@ -139,6 +140,8 @@ function playerHit() {
   }
 }
 
+//hidden card feature not working
+
 function playerStand() {
   if (!isPlayerTurn) return;
   isPlayerTurn = false;
@@ -147,12 +150,17 @@ function playerStand() {
 }
 
 function dealerTurn() {
+  dealerHand.forEach(card => card.isFaceDown = false);
+  renderHands();
+
   while (getHandValue(dealerHand) < 17) {
     dealerHand.push(shuffledDeck.pop());
     renderHands();
   }
   checkWinner();
 }
+//hidden card feature not working.
+
 
 function getHandValue(hand) {
   let value = 0;
