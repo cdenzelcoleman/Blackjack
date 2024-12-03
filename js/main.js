@@ -74,8 +74,18 @@ function handleDeal() {
   dealerHand = [shuffledDeck.pop(), shuffledDeck.pop()];
   playerTotal = getHandValue(playerHand);
   dealerTotal = getHandValue(dealerHand);
-  // is Blackjack initially dealt
-  // is Blackjack initially dealt to both dealer and player
+
+  if (playerTotal && dealerTotal === 21) {
+    handOutcome = 'PUSH';
+  } else if (playerTotal === 21) {
+    handOutcome = 'PBJ';
+    balance += currentBet * 1.5;
+    currentBet = 0;
+  } else (dealerTotal === 21) {
+    handOutcome = 'DBJ';
+    balance += currentBet * 0;
+    currentBet = 0;
+  }
   // Continue coding the handleDeal function so that...
   // if the dealer and the player have 21, set handOutcome to 'PUSH'
   // otherwise, if player has 21, set handOutcome to 'PBJ' and update bankroll so that it is increased by bet * 1.5 and reset bet back to zero
