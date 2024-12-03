@@ -5,7 +5,7 @@
 body {
   height: 100vh;
   font-family: sans-serif;
-  background-color: #024502d4;
+  background-color: #094c09fb;
   color: #ecf0f1;
 }
 
@@ -18,13 +18,14 @@ body {
   margin: 20px;
   min-height: 100px;
 }
-/* Remove Solid befor submiting */
+
 #dealer-hand {
-  display: flex;
+  min-width: 320px;
   border: 4px solid #e74c3c;
 }
-/* Remove Solid befor submiting*/
+
 #player-hand {
+  min-width: 320px;
   border: 4px solid #2ecc71;
 }
 

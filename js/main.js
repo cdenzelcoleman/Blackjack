@@ -6,12 +6,14 @@ const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', '
 const originalDeck = buildOriginalDeck();
 
 /*----- app's state (variables) -----*/
-let shuffledDeck ;
-let playerHand = [];
-let dealerHand = [];
-// let isPlayerTurn = true;
-let balance = 5000
-let currentBet = 0;
+let shuffledDeck;
+let playerHand;
+let dealerHand;
+let balance;
+let currentBet;
+let handOutcome;
+let playerTotal;
+let dealerTotal;
 
 /*----- cached element references -----*/
 const dealerHandContainer = document.getElementById('dealer-hand');
@@ -23,13 +25,26 @@ const currentBetEl = document.getElementById('current-bet');
 /*----- event listeners -----*/
 document.getElementById('hit-btn').addEventListener('click', playerHit);
 document.getElementById('stand-btn').addEventListener('click', playerStand);
-document.getElementById('restart-btn').addEventListener('click', startGame);
+document.getElementById('deal-btn').addEventListener('click', handleDeal);
 document.querySelectorAll('.bet-btn').forEach(button => {
   button.addEventListener('click', placeBet);
 });
 
 /*----- functions -----*/
 
+
+function buildOriginalDeck() {
+  const deck = [];
+  suits.forEach(function (suit) {
+  ranks.forEach(function (rank) {
+  deck.push({
+  face: `${suit}${rank}`,
+  value: Number(rank) || (rank === 'A' ? 11 : 10)
+      });
+    });
+  });
+  return deck;
+}
 
 function getNewShuffledDeck() {
   const tempDeck = [...originalDeck];
@@ -41,83 +56,65 @@ function getNewShuffledDeck() {
   return newShuffledDeck;
 }
 
-function buildOriginalDeck() {
-  const deck = [];
-  suits.forEach(function(suit) {
-    ranks.forEach(function(rank) {
-      deck.push({
-        face: `${suit}${rank}`,
-        value: Number(rank) || (rank === 'A' ? 11 : 10)
-      });
-    });
-  });
-  return deck;
-}
-
 function placeBet(evt) {
   const betAmount = parseInt(evt.target.dataset.amount);
   if (betAmount > balance) {
-    messageEl.textContent = "Place Bet First!";
-    return;
+  messageEl.textContent = "Place Bet First!";
+  return;
   }
   currentBet += betAmount;
   balance -= betAmount;
-  updateBetDisplay(); 
-  }
+  updateBetDisplay();
+}
 
-function startGame() {
-  if (currentBet === 0) {
-    messageEl.textContent = "Place your bets!";
-    return;
-  }
+function handleDeal() {
+  handOutcome = null;
   shuffledDeck = getNewShuffledDeck();
   playerHand = [shuffledDeck.pop(), shuffledDeck.pop()];
   dealerHand = [shuffledDeck.pop(), shuffledDeck.pop()];
-  dealerHand[0].isFaceDown = true;
-  isPlayerTurn = true;
-  renderHands();
-  messageEl.textContent = "Your turn! Hit or Stand?";
+  playerTotal = getHandValue(playerHand);
+  dealerTotal = getHandValue(dealerHand);
+  // is Blackjack initially dealt
+  // is Blackjack initially dealt to both dealer and player
+  // Continue coding the handleDeal function so that...
+  // if the dealer and the player have 21, set handOutcome to 'PUSH'
+  // otherwise, if player has 21, set handOutcome to 'PBJ' and update bankroll so that it is increased by bet * 1.5 and reset bet back to zero
+  // otherwise if dealer has 21, set handOutcome to 'DBJ' and update bet to zero. (edited)
+
+  render();
 }
 
 function initGame() {
-  
+
   shuffledDeck = getNewShuffledDeck();
   playerHand = [];
   dealerHand = [];
   currentBet = 0;
-  balance = 5000;  
-  isPlayerTurn = true;
-  messageEl.textContent = "Please place a bet to start the game.";
-  updateBetDisplay();
-  renderInitialDeckBacks();
+  balance = 5000;
+  render();
 }
 
-function renderInitialDeckBacks() {
-  const initialCardCount = 2; 
-  let cardsHtml = '';
-  
-  
-  for (let i = 0; i < initialCardCount; i++) {
-    cardsHtml += `<div class="card back"></div>`;
-  }
-
- 
-  playerHandContainer.innerHTML = cardsHtml;
-  dealerHandContainer.innerHTML = cardsHtml;
+function render() {
+  renderHands();
+  renderBetDisplay();
+  renderMessage();
 }
 
-initGame();
+function renderMessage() {
+  messageEl.textContent = "Your turn! Hit or Stand?";
+ //messageEl.textContent = "Please place a bet to start the game."; 
+}
 
 function renderHands() {
-  renderDeckInContainer(playerHand, playerHandContainer);
-  renderDeckInContainer(dealerHand, dealerHandContainer, !isPlayerTurn);
+  renderHand(playerHand, playerHandContainer);
+  renderHand(dealerHand, dealerHandContainer, true);
 }
 
-function renderDeckInContainer(deck, container, hideFirstCard = false) {
+function renderHand(hand, container, isDealerHand) {
   container.innerHTML = '';
   let cardsHtml = '';
-  deck.forEach(function(card, idx) {
-    if (hideFirstCard && idx === 0 || card.isFaceDown) {
+  deck.forEach(function (card, idx) {
+    if (isDealerHand && !handOutcome && idx === 0) {
       cardsHtml += `<div class="card back"></div>`;
     } else {
       cardsHtml += `<div class="card ${card.face}"></div>`;
@@ -126,9 +123,9 @@ function renderDeckInContainer(deck, container, hideFirstCard = false) {
   container.innerHTML = cardsHtml;
 }
 
-  function updateBetDisplay() {
-    balanceEl.textContent = balance;
-    currentBetEl.textContent = currentBet;
+function renderBetDisplay() {
+  balanceEl.textContent = balance;
+  currentBetEl.textContent = currentBet;
 }
 
 function playerHit() {
@@ -165,7 +162,7 @@ function dealerTurn() {
 function getHandValue(hand) {
   let value = 0;
   let aceCount = 0;
-  hand.forEach(function(card) {
+  hand.forEach(function (card) {
     value += card.value;
     if (card.value === 11) aceCount++;
   });
@@ -200,13 +197,13 @@ function endGame(message) {
   if (balance === 0) {
     messageEl.textContent = "Ya Broke!";
   }
-    currentBet = 0
-    updateBetDisplay();
-    isPlayerTurn = false;
+  currentBet = 0
+  updateBetDisplay();
+
 }
 
 
 
 
-    startGame();
+startGame();
 
