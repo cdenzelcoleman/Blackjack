@@ -2,8 +2,8 @@
 const suits = ['s', 'c', 'd', 'h'];
 const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
 const MSG_LOOKUP = {
-  null: 'Good Luck!',
-  'T': "It's a Push",
+  null: 'Hit or Stand!',
+  'PUSH': "It's a Push",
   'P': 'Player Wins!',
   'D': 'Dealer Wins',
   'PBJ': 'Player Has Blackjack 😃',
@@ -87,8 +87,11 @@ function render() {
 }
 
 function renderMessage() {
-  messageEl.textContent = "Your turn! Hit or Stand?";
- //messageEl.textContent = "Please place a bet to start the game."; 
+  if (handOutcome === undefined) {
+    messageEl.textContent = "Place bet and click deal."; 
+  } else {
+    messageEl.textContent = MSG_LOOKUP[handOutcome];
+  }  
 }
 
 function renderHands() {
@@ -123,25 +126,16 @@ function playerHit() {
   }
 }
 
-//hidden card feature not working
-
 function playerStand() {
-  messageEl.textContent = "Dealer's turn...";
   dealerTurn();
 }
 
 function dealerTurn() {
-  dealerHand.forEach(card => card.isFaceDown = false);
-  renderHands();
-
   while (getHandValue(dealerHand) < 17) {
     dealerHand.push(shuffledDeck.pop());
-    renderHands();
   }
   checkWinner();
 }
-//hidden card feature not working.
-
 
 function getHandValue(hand) {
   let value = 0;
@@ -161,32 +155,19 @@ function checkWinner() {
   const playerValue = getHandValue(playerHand);
   const dealerValue = getHandValue(dealerHand);
   if (dealerValue > 21) {
-    endGame('Dealer busts! You win!');
-  } else if (playerValue > dealerValue) {
-    endGame('You win!');
-  } else if (playerValue < dealerValue) {
-    endGame('Dealer wins.');
-  } else {
-    endGame("It's a tie!");
-  }
-}
-
-function endGame(message) {
-  messageEl.textContent = message;
-  if (message.includes('You win')) {
+    handOutcome = 'P';
     balance += currentBet * 2;
-  } else if (message.includes("It's a tie")) {
-    balance += currentBet;
+    currentBet = 0;
+  } else if (playerValue > 21 || playerValue < dealerValue) {
+    handOutcome = 'D';
+    currentBet = 0;
+  } else {
+    handOutcome = 'P';
+    balance += currentBet * 2;
+    currentBet = 0;
   }
-  if (balance === 0) {
-    messageEl.textContent = "Ya Broke!";
-  }
-  currentBet = 0
-  updateBetDisplay();
-
+  render();
 }
-
-
 
 function buildOriginalDeck() {
   const deck = [];
