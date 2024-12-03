@@ -29,6 +29,8 @@ const playerHandContainer = document.getElementById('player-hand');
 const messageEl = document.getElementById('message');
 const balanceEl = document.getElementById('balance');
 const currentBetEl = document.getElementById('current-bet');
+const handActiveControlsEl = document.getElementById('hand-active-controls');
+const handOverControlsEl = document.getElementById('hand-over-controls');
 
 /*----- event listeners -----*/
 document.getElementById('hit-btn').addEventListener('click', playerHit);
@@ -68,6 +70,8 @@ function handleDeal() {
     handOutcome = 'DBJ';
     currentBet = 0;
   }
+  handActiveControlsEl.style.display = 'initial'
+  document.getElementById('deal-btn').style.display = 'none'
   render();
 }
 
@@ -88,6 +92,7 @@ function render() {
   renderControls();
 }
 function renderControls() {
+  // handOverControlsEl.style.visibility = handInPlay() ? 'hidden' : 'visible';
   //show bet or hit dbl stand
   // deal should disappear
 }
@@ -177,6 +182,7 @@ function checkWinner() {
     balance += currentBet * 2;
     currentBet = 0;
   }
+  document.getElementById('deal-btn').style.display = 'initial'
   render();
 }
 
