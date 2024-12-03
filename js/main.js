@@ -1,6 +1,14 @@
 /*----- constants -----*/
 const suits = ['s', 'c', 'd', 'h'];
 const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
+const MSG_LOOKUP = {
+  null: 'Good Luck!',
+  'T': "It's a Push",
+  'P': 'Player Wins!',
+  'D': 'Dealer Wins',
+  'PBJ': 'Player Has Blackjack 😃',
+  'DBJ': 'Dealer Has Blackjack 😔',
+};
 
 // Build an 'original' deck of 'card' objects used to create shuffled decks
 const originalDeck = buildOriginalDeck();
@@ -31,40 +39,15 @@ document.querySelectorAll('.bet-btn').forEach(button => {
 });
 
 /*----- functions -----*/
+initGame();
 
 
-function buildOriginalDeck() {
-  const deck = [];
-  suits.forEach(function (suit) {
-  ranks.forEach(function (rank) {
-  deck.push({
-  face: `${suit}${rank}`,
-  value: Number(rank) || (rank === 'A' ? 11 : 10)
-      });
-    });
-  });
-  return deck;
-}
-
-function getNewShuffledDeck() {
-  const tempDeck = [...originalDeck];
-  const newShuffledDeck = [];
-  while (tempDeck.length) {
-    const rndIdx = Math.floor(Math.random() * tempDeck.length);
-    newShuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]);
-  }
-  return newShuffledDeck;
-}
 
 function placeBet(evt) {
   const betAmount = parseInt(evt.target.dataset.amount);
-  if (betAmount > balance) {
-  messageEl.textContent = "Place Bet First!";
-  return;
-  }
   currentBet += betAmount;
   balance -= betAmount;
-  updateBetDisplay();
+  render();
 }
 
 function handleDeal() {
@@ -74,23 +57,16 @@ function handleDeal() {
   dealerHand = [shuffledDeck.pop(), shuffledDeck.pop()];
   playerTotal = getHandValue(playerHand);
   dealerTotal = getHandValue(dealerHand);
-
-  if (playerTotal && dealerTotal === 21) {
+  if (playerTotal === 21 && dealerTotal === 21) {
     handOutcome = 'PUSH';
   } else if (playerTotal === 21) {
     handOutcome = 'PBJ';
-    balance += currentBet * 1.5;
+    balance += currentBet * 1.5 + currentBet;
     currentBet = 0;
-  } else (dealerTotal === 21) {
+  } else if (dealerTotal === 21) {
     handOutcome = 'DBJ';
-    balance += currentBet * 0;
     currentBet = 0;
   }
-  // Continue coding the handleDeal function so that...
-  // if the dealer and the player have 21, set handOutcome to 'PUSH'
-  // otherwise, if player has 21, set handOutcome to 'PBJ' and update bankroll so that it is increased by bet * 1.5 and reset bet back to zero
-  // otherwise if dealer has 21, set handOutcome to 'DBJ' and update bet to zero. (edited)
-
   render();
 }
 
@@ -123,7 +99,7 @@ function renderHands() {
 function renderHand(hand, container, isDealerHand) {
   container.innerHTML = '';
   let cardsHtml = '';
-  deck.forEach(function (card, idx) {
+  hand.forEach(function (card, idx) {
     if (isDealerHand && !handOutcome && idx === 0) {
       cardsHtml += `<div class="card back"></div>`;
     } else {
@@ -139,7 +115,7 @@ function renderBetDisplay() {
 }
 
 function playerHit() {
-  if (!isPlayerTurn) return;
+ 
   playerHand.push(shuffledDeck.pop());
   renderHands();
   if (getHandValue(playerHand) > 21) {
@@ -150,8 +126,6 @@ function playerHit() {
 //hidden card feature not working
 
 function playerStand() {
-  if (!isPlayerTurn) return;
-  isPlayerTurn = false;
   messageEl.textContent = "Dealer's turn...";
   dealerTurn();
 }
@@ -214,6 +188,25 @@ function endGame(message) {
 
 
 
+function buildOriginalDeck() {
+  const deck = [];
+  suits.forEach(function (suit) {
+  ranks.forEach(function (rank) {
+  deck.push({
+  face: `${suit}${rank}`,
+  value: Number(rank) || (rank === 'A' ? 11 : 10)
+      });
+    });
+  });
+  return deck;
+}
 
-startGame();
-
+function getNewShuffledDeck() {
+  const tempDeck = [...originalDeck];
+  const newShuffledDeck = [];
+  while (tempDeck.length) {
+    const rndIdx = Math.floor(Math.random() * tempDeck.length);
+    newShuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]);
+  }
+  return newShuffledDeck;
+}
