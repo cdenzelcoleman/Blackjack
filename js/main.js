@@ -32,6 +32,7 @@ const currentBetEl = document.getElementById('current-bet');
 
 /*----- event listeners -----*/
 document.getElementById('hit-btn').addEventListener('click', playerHit);
+document.getElementById('dbl-btn').addEventListener('click', doubleDown);
 document.getElementById('stand-btn').addEventListener('click', playerStand);
 document.getElementById('deal-btn').addEventListener('click', handleDeal);
 document.querySelectorAll('.bet-btn').forEach(button => {
@@ -84,6 +85,11 @@ function render() {
   renderHands();
   renderBetDisplay();
   renderMessage();
+  renderControls();
+}
+function renderControls() {
+  //show bet or hit dbl stand
+  // deal should disappear
 }
 
 function renderMessage() {
@@ -118,12 +124,17 @@ function renderBetDisplay() {
 }
 
 function playerHit() {
- 
   playerHand.push(shuffledDeck.pop());
-  renderHands();
-  if (getHandValue(playerHand) > 21) {
-    endGame('Bust! Dealer wins.');
+  playerTotal = getHandValue(playerHand);
+  if (playerTotal > 21) {
+    checkWinner();
+  } else {
+    render();
   }
+}
+function doubleDown() {
+  playerHand.push(shuffledDeck.pop());
+  playerStand();
 }
 
 function playerStand() {
