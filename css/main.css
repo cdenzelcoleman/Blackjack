@@ -4,8 +4,9 @@
 
 body {
   height: 100vh;
-  font-family: sans-serif;
+  font-family: 'Atma', sans-serif;
   background: linear-gradient(to top, #72e67e, #042f15);
+  background-color: #094c09fb;
   color: #ecf0f1;
 }
 
@@ -40,12 +41,18 @@ body {
 }
 
 #dealer-hand {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
   min-width: 260px;
   min-height: 220px;
   border: 4px solid #e74c3c;
 }
 
 #player-hand {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
   min-width: 260px;
   min-height: 220px;
   border: 4px solid #000000;
@@ -68,7 +75,7 @@ body {
 button {
   display: flex;
   align-items:center;
-  justify-content: center;
+  justify-content: space-around;
   margin: 10px auto;
   padding: 10px 20px;
   font-size: 16px;
@@ -175,4 +182,29 @@ button:hover {
 .bet-btn[data-amount="500"] {
   background: linear-gradient(to top, #5b0088, #eeedec); 
   
+}
+
+#hand-active-controls button {
+  width: 120px;                
+  height: 50px;                
+  border-radius: 25px;          
+  border: 2px solid #34495e;   
+  font-size: 18px;              
+  font-weight: bold;            
+  color: #ffffff;             
+  background: linear-gradient(to bottom, #db8a34, #b92963);   
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);  
+}
+
+#hand-active-controls button:hover {
+  background: linear-gradient(to bottom, #5dade2, #2980b9);   
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);  
+}
+
+#hand-active-controls button:active {
+  transform: translateY(4px);     
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);  
 }

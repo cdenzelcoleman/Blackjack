@@ -105,6 +105,7 @@ function render() {
   renderMessage();
   renderControls();
   checkBetAmnt();
+  checkEndGame
 } 
 
 function renderControls() {
