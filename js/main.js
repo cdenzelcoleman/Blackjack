@@ -49,9 +49,22 @@ initGame();
 
 function placeBet(evt) {
   const betAmount = parseInt(evt.target.dataset.amount);
-  currentBet += betAmount;
+  currentBet += betAmount;{
   balance -= betAmount;
   render();
+ }
+ checkBetAmnt();
+}
+
+function checkBetAmnt() {
+  document.querySelectorAll('.bet-btn').forEach(button => {
+    const betAmount = parseInt(button.dataset.amount);
+    if (balance < betAmount) {
+      button.disabled = true;  
+    } else {
+      button.disabled = false;
+    }
+  });
 }
 
 function handleDeal() {
@@ -91,7 +104,9 @@ function render() {
   renderBetDisplay();
   renderMessage();
   renderControls();
-}
+  checkBetAmnt();
+} 
+
 function renderControls() {
   const handInPlay = playerHand.length > 0 && dealerHand.length > 0 && !handOutcome;
   document.getElementById('deal-btn').style.display = handInPlay ? 'none' : 'initial';

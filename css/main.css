@@ -5,14 +5,23 @@
 body {
   height: 100vh;
   font-family: sans-serif;
-  background-color: #094c09fb;
+  background: linear-gradient(to top, #72e67e, #042f15);
+  /* background-color: #094c09fb; */
   color: #ecf0f1;
+}
+
+.game-container {
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: justify;
 }
 
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content:center;
   border: 4px dotted gray;
   padding: 10px;
   margin: 20px;
@@ -20,15 +29,15 @@ body {
 }
 
 #dealer-hand {
-  min-width: 200px;
+  min-width: 260px;
   min-height: 220px;
   border: 4px solid #e74c3c;
 }
 
 #player-hand {
-  min-width: 200px;
+  min-width: 260px;
   min-height: 220px;
-  border: 4px solid #2ecc71;
+  border: 4px solid #000000;
 }
 
 .card {
@@ -62,7 +71,7 @@ button {
 }
 
 button:hover {
-  background-color: #21284c;
+  background-color: #626886;
   color: #ecf0f1;
 }
 
@@ -70,7 +79,7 @@ button:hover {
   display: flex;
   text-align: center;
   margin-top: 20px;
-  border: 4px solid #ef0764; 
+  border: 4px transparent #ef0764; 
 }
 
 .player-section {
@@ -86,19 +95,12 @@ button:hover {
   align-items: center;
   text-align: center; 
 }
-
-.betting-controls {
-  box-shadow: 0 5px topx;
+#deal-btn {
   display: flex;
-  text-align: center;
-  justify-content: center;
-  border-radius: 0% ;
-}
-.bet-btn {
-width: 100px;
-height: 100px;
-border-radius: 50%;
-border: 3px solid #34495e;  
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid #34495e;  
   font-size: 16px;       
   font-weight: bold;      
   color: #fff; 
@@ -109,6 +111,31 @@ border: 3px solid #34495e;
   transition: transform 0.1s, box-shadow 0.1s;
 }
 
+.betting-controls {
+  box-shadow: 0 5px topx;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  border-radius: 0% ;
+}
+.bet-btn {
+  display: flex;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #34495e;  
+  font-size: 16px;       
+  font-weight: bold;      
+  color: #fff; 
+  cursor: pointer;
+  outline: none;
+  background: linear-gradient(to top, #ff3333, #ff6666); 
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4); 
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+
+
 .bet-btn:hover {
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6); 
 }
@@ -116,4 +143,25 @@ border: 3px solid #34495e;
 .bet-btn:active {
   transform: translateY(4px);   
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);  
+}
+
+.bet-btn[data-amount="10"] {
+  background: linear-gradient(to top, #880000, #eeedec); 
+  
+}
+.bet-btn[data-amount="20"] {
+  background: linear-gradient(to top, #7cc261, #696666); 
+  
+}
+.bet-btn[data-amount="50"] {
+  background: linear-gradient(to top, #002b88, #eeedec); 
+  
+}
+.bet-btn[data-amount="100"] {
+  background: linear-gradient(to top, #000000, #eeedec); 
+  
+}
+.bet-btn[data-amount="500"] {
+  background: linear-gradient(to top, #5b0088, #eeedec); 
+  
 }
