@@ -202,7 +202,11 @@ function getHandValue(hand) {
 function checkWinner() {
   const playerValue = getHandValue(playerHand);
   const dealerValue = getHandValue(dealerHand);
-  if (dealerValue > 21) {
+  if (dealerValue === playerValue) {
+    handOutcome = 'PUSH';
+    balance += currentBet;
+    currentBet = 0;
+  } else if (dealerValue > 21) {
     handOutcome = 'P';
     balance += currentBet * 2;
     currentBet = 0;
