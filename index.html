@@ -22,8 +22,9 @@
 
   <header class="title-header">
     <h1>Blackjack</h1>
+    <h3 id='message'></h3>
   </header>
-
+  
   <div class='game-container'>
     <div class='dealer-section'>
       <h3>Dealer's Hand</h3>
@@ -43,17 +44,15 @@
         <button id="dbl-btn">Double Down</button>
         <button id="stand-btn">Stand</button>
       </div>
-
       <button id="deal-btn">Deal</button>
-      <button id="restart-btn" onclick="restartGame()" style="display: none;">Restart Game</button>
 
+     
     </div>
 
-    <h3 id='message'></h3>
-
     <div class='betting-container'>
-      <h2>Balance: $<span id='balance'>5000</span></h2>
-      <h2>Place Your Bets!</h2>
+     
+      <h2>CHIPS!</h2>
+      <h2>Current Bet: $<span id='current-bet'>0</span></h2>
       <div class='betting-controls'>
         <button class='bet-btn' data-amount='500'>$500</button>
         <button class='bet-btn' data-amount='100'>$100</button>
@@ -61,8 +60,11 @@
         <button class='bet-btn' data-amount='20'>$20</button>
         <button class='bet-btn' data-amount='10'>$10</button>
       </div>
-      <h2>Current Bet: $<span id='current-bet'>0</span></h2>
+        <h2>Balance: $<span id='balance'>5000</span></h2>
+      <button id="restart-btn" onclick="restartGame()" style="display: none;">Restart Game</button>
+
     </div>
+    
 
 </body>
 

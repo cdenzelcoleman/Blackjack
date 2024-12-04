@@ -4,9 +4,9 @@ const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', '
 const MSG_LOOKUP = {
   null: 'Hit or Stand!',
   'PUSH': "It's a Push",
-  'P': 'Player Wins!',
-  'D': 'Dealer Wins',
-  'PBJ': 'Player Has Blackjack 😃',
+  'P': 'WINNER! WINNER!',
+  'D': 'YOU LOSE',
+  'PBJ': 'YOU GOT BLACKJACK!!! 😃',
   'DBJ': 'Dealer Has Blackjack 😔',
   'YB' : 'Ya Broke!'
 };
@@ -53,12 +53,12 @@ function placeBet(evt) {
   balance -= betAmount;
   render();
  }
- checkBetAmnt();
+  checkBetAmnt();
 }
 
 function checkBetAmnt() {
   document.querySelectorAll('.bet-btn').forEach(button => {
-    const betAmount = parseInt(button.dataset.amount);
+  const betAmount = parseInt(button.dataset.amount);
     if (balance < betAmount) {
       button.disabled = true;  
     } else {
@@ -74,9 +74,9 @@ function handleDeal() {
   dealerHand = [shuffledDeck.pop(), shuffledDeck.pop()];
   playerTotal = getHandValue(playerHand);
   dealerTotal = getHandValue(dealerHand);
-  if (playerTotal === 21 && dealerTotal === 21) {
+    if (playerTotal === 21 && dealerTotal === 21) {
     handOutcome = 'PUSH';
-  } else if (playerTotal === 21) {
+    } else if (playerTotal === 21) {
     handOutcome = 'PBJ';
     balance += currentBet * 1.5 + currentBet;
     currentBet = 0;
@@ -246,10 +246,17 @@ function restartGame() {
   currentBet = 0;
   playerHand = [];
   dealerHand = [];
-  handOutcome = undefined;
+  handOutcome = null;
   document.getElementById('deal-btn').disabled = false;
-  document.querySelectorAll('.bet-btn').style.display = 'none';
-
+  document.getElementById('deal-btn').style.display = 'inial';
+  document.querySelectorAll('.bet-btn').forEach(button => {
+    button.disabled = false;
+    button.style.display = 'initial';
+  });
+  document.getElementById('restart-btn').style.display = 'none';
+  messageEl.textContent = "Place bet and click deal.";
+  handActiveControlsEl.style.display = 'none';
+  
   render();
 }
 
