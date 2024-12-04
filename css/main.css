@@ -29,7 +29,9 @@ body {
   font-family: 'Atma', sans-serif;  
 }
 
-
+#hand-active-controls > #dbl-btn:disabled {
+  background: gray;
+}
 
 
 .game-container {
@@ -139,7 +141,7 @@ button:hover {
   transition: transform 0.1s, box-shadow 0.1s;
 }
 
-.betting-controls {
+#betting-controls {
   box-shadow: 0 5px topx;
   display: flex;
   text-align: center;

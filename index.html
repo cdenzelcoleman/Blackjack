@@ -39,21 +39,21 @@
 
     <div class="controls">
 
-      <div id="hand-active-controls" style='display:none;'>
+      <div id="hand-active-controls">
         <button id="hit-btn">Hit</button>
         <button id="dbl-btn">Double Down</button>
         <button id="stand-btn">Stand</button>
       </div>
+
       <button id="deal-btn">Deal</button>
 
-     
-    </div>
+     </div>
 
     <div class='betting-container'>
      
       <h2>CHIPS!</h2>
       <h2>Current Bet: $<span id='current-bet'>0</span></h2>
-      <div class='betting-controls'>
+      <div id='betting-controls'>
         <button class='bet-btn' data-amount='500'>$500</button>
         <button class='bet-btn' data-amount='100'>$100</button>
         <button class='bet-btn' data-amount='50'>$50</button>
@@ -61,8 +61,6 @@
         <button class='bet-btn' data-amount='10'>$10</button>
       </div>
         <h2>Balance: $<span id='balance'>5000</span></h2>
-      <button id="restart-btn" onclick="restartGame()" style="display: none;">Restart Game</button>
-
     </div>
     
 

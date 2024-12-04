@@ -8,7 +8,7 @@ const MSG_LOOKUP = {
   'D': 'YOU LOSE',
   'PBJ': 'YOU GOT BLACKJACK!!! 😃',
   'DBJ': 'Dealer Has Blackjack 😔',
-  'YB' : 'Ya Broke!'
+  'YB': 'Ya Broke!'
 };
 
 // Build an 'original' deck of 'card' objects used to create shuffled decks
@@ -31,7 +31,9 @@ const messageEl = document.getElementById('message');
 const balanceEl = document.getElementById('balance');
 const currentBetEl = document.getElementById('current-bet');
 const handActiveControlsEl = document.getElementById('hand-active-controls');
-const handOverControlsEl = document.getElementById('hand-over-controls');
+const bettingControlsEl = document.getElementById('betting-controls');
+const dealBtn = document.getElementById('deal-btn');
+const dblBtn = document.getElementById('dbl-btn');
 
 /*----- event listeners -----*/
 document.getElementById('hit-btn').addEventListener('click', playerHit);
@@ -49,18 +51,18 @@ initGame();
 
 function placeBet(evt) {
   const betAmount = parseInt(evt.target.dataset.amount);
-  currentBet += betAmount;{
-  balance -= betAmount;
-  render();
- }
+  currentBet += betAmount; {
+    balance -= betAmount;
+    render();
+  }
   checkBetAmnt();
 }
 
 function checkBetAmnt() {
   document.querySelectorAll('.bet-btn').forEach(button => {
-  const betAmount = parseInt(button.dataset.amount);
+    const betAmount = parseInt(button.dataset.amount);
     if (balance < betAmount) {
-      button.disabled = true;  
+      button.disabled = true;
     } else {
       button.disabled = false;
     }
@@ -74,9 +76,9 @@ function handleDeal() {
   dealerHand = [shuffledDeck.pop(), shuffledDeck.pop()];
   playerTotal = getHandValue(playerHand);
   dealerTotal = getHandValue(dealerHand);
-    if (playerTotal === 21 && dealerTotal === 21) {
+  if (playerTotal === 21 && dealerTotal === 21) {
     handOutcome = 'PUSH';
-    } else if (playerTotal === 21) {
+  } else if (playerTotal === 21) {
     handOutcome = 'PBJ';
     balance += currentBet * 1.5 + currentBet;
     currentBet = 0;
@@ -84,8 +86,6 @@ function handleDeal() {
     handOutcome = 'DBJ';
     currentBet = 0;
   }
-  handActiveControlsEl.style.display = 'initial'
-  document.getElementById('deal-btn').style.display = 'none'
   render();
 }
 
@@ -106,23 +106,22 @@ function render() {
   renderControls();
   checkBetAmnt();
   checkEndGame();
-} 
+}
 
 function renderControls() {
-  const handInPlay = playerHand.length > 0 && dealerHand.length > 0 && !handOutcome;
-  document.getElementById('deal-btn').style.display = handInPlay ? 'none' : 'initial';
+  const handInPlay = handOutcome === null;
+  dealBtn.style.display = !handInPlay && currentBet >= 10 ? 'initial' : 'none';
+  dblBtn.disabled = playerHand.length > 2;
+  bettingControlsEl.style.display = handInPlay ? 'none' : 'initial';
   handActiveControlsEl.style.display = handInPlay ? 'initial' : 'none';
-  document.querySelectorAll('.bet-btn').forEach(btn => {
-  btn.disabled = handInPlay;
-  });
 }
 
 function renderMessage() {
   if (handOutcome === undefined) {
-    messageEl.textContent = "Place bet and click deal."; 
+    messageEl.textContent = "Place bet and click deal.";
   } else {
     messageEl.textContent = MSG_LOOKUP[handOutcome];
-  }  
+  }
 }
 
 function renderHands() {
@@ -161,13 +160,13 @@ function doubleDown() {
   if (balance >= currentBet) {
     balance -= currentBet;
     currentBet *= 2;
-  playerHand.push(shuffledDeck.pop());
-  playerTotal = getHandValue(playerHand);
-  if (playerTotal > 21) {
-    checkWinner();
-  } else {
-    playerStand();
-  }
+    playerHand.push(shuffledDeck.pop());
+    playerTotal = getHandValue(playerHand);
+    if (playerTotal > 21) {
+      checkWinner();
+    } else {
+      playerStand();
+    }
   } else {
     handOutcome = 'YB';
   }
@@ -218,17 +217,16 @@ function checkWinner() {
     balance += currentBet * 2;
     currentBet = 0;
   }
-  document.getElementById('deal-btn').style.display = 'initial'
   render();
 }
 
 function buildOriginalDeck() {
   const deck = [];
   suits.forEach(function (suit) {
-  ranks.forEach(function (rank) {
-  deck.push({
-  face: `${suit}${rank}`,
-  value: Number(rank) || (rank === 'A' ? 11 : 10)
+    ranks.forEach(function (rank) {
+      deck.push({
+        face: `${suit}${rank}`,
+        value: Number(rank) || (rank === 'A' ? 11 : 10)
       });
     });
   });
@@ -245,27 +243,8 @@ function getNewShuffledDeck() {
   return newShuffledDeck;
 }
 
-function restartGame() {
-  balance = 5000;
-  currentBet = 0;
-  playerHand = [];
-  dealerHand = [];
-  handOutcome = null;
-  document.getElementById('deal-btn').disabled = false;
-  document.getElementById('deal-btn').style.display = 'inial';
-  document.querySelectorAll('.bet-btn').forEach(button => {
-    button.disabled = false;
-    button.style.display = 'initial';
-  });
-  document.getElementById('restart-btn').style.display = 'none';
-  messageEl.textContent = "Place bet and click deal.";
-  handActiveControlsEl.style.display = 'none';
-  
-  render();
-}
-
 function checkEndGame() {
-  if (balance <= 0) {
+  if (balance <= 0 && currentBet <= 0) {
     messageEl.textContent = "Ya Broke!";
     document.getElementById('deal-btn').disabled = true;
     document.querySelectorAll('.bet-btn').forEach(button => button.disabled = true);
@@ -273,3 +252,4 @@ function checkEndGame() {
     document.getElementById('restart-btn').style.display = 'block';
   }
 }
+initGame();
