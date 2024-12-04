@@ -105,7 +105,7 @@ function render() {
   renderMessage();
   renderControls();
   checkBetAmnt();
-  checkEndGame
+  checkEndGame();
 } 
 
 function renderControls() {
@@ -239,4 +239,26 @@ function getNewShuffledDeck() {
     newShuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]);
   }
   return newShuffledDeck;
+}
+
+function restartGame() {
+  balance = 5000;
+  currentBet = 0;
+  playerHand = [];
+  dealerHand = [];
+  handOutcome = undefined;
+  document.getElementById('deal-btn').disabled = false;
+  document.querySelectorAll('.bet-btn').style.display = 'none';
+
+  render();
+}
+
+function checkEndGame() {
+  if (balance <= 0) {
+    messageEl.textContent = "Ya Broke!";
+    document.getElementById('deal-btn').disabled = true;
+    document.querySelectorAll('.bet-btn').forEach(button => button.disabled = true);
+    handActiveControlsEl.style.display = 'none';
+    document.getElementById('restart-btn').style.display = 'block';
+  }
 }
