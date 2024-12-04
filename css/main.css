@@ -6,9 +6,20 @@ body {
   height: 100vh;
   font-family: sans-serif;
   background: linear-gradient(to top, #72e67e, #042f15);
-  /* background-color: #094c09fb; */
   color: #ecf0f1;
 }
+
+.title-header h1 {
+  text-align: center;
+  font-size: 100px;                    
+  color: #f1c40f;                    
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+  font-weight: bold;
+  font-family: 'Barrio', sans-serif; 
+}
+
+
+
 
 .game-container {
 
