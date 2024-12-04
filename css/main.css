@@ -88,9 +88,32 @@ button:hover {
 }
 
 .betting-controls {
+  box-shadow: 0 5px topx;
   display: flex;
   text-align: center;
   justify-content: center;
   border-radius: 0% ;
 }
+.bet-btn {
+width: 100px;
+height: 100px;
+border-radius: 50%;
+border: 3px solid #34495e;  
+  font-size: 16px;       
+  font-weight: bold;      
+  color: #fff; 
+  cursor: pointer;
+  outline: none;
+  background: linear-gradient(to top, #ff3333, #ff6666); 
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4); 
+  transition: transform 0.1s, box-shadow 0.1s;
+}
 
+.bet-btn:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6); 
+}
+
+.bet-btn:active {
+  transform: translateY(4px);   
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);  
+}

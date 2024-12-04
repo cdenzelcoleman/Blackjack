@@ -8,6 +8,7 @@ const MSG_LOOKUP = {
   'D': 'Dealer Wins',
   'PBJ': 'Player Has Blackjack 😃',
   'DBJ': 'Dealer Has Blackjack 😔',
+  'YB' : 'Ya Broke!'
 };
 
 // Build an 'original' deck of 'card' objects used to create shuffled decks
@@ -92,9 +93,12 @@ function render() {
   renderControls();
 }
 function renderControls() {
-  // handOverControlsEl.style.visibility = handInPlay() ? 'hidden' : 'visible';
-  //show bet or hit dbl stand
-  // deal should disappear
+  const handInPlay = playerHand.length > 0 && dealerHand.length > 0 && !handOutcome;
+  document.getElementById('deal-btn').style.display = handInPlay ? 'none' : 'initial';
+  handActiveControlsEl.style.display = handInPlay ? 'initial' : 'none';
+  document.querySelectorAll('.bet-btn').forEach(btn => {
+  btn.disabled = handInPlay;
+  });
 }
 
 function renderMessage() {
@@ -138,8 +142,20 @@ function playerHit() {
   }
 }
 function doubleDown() {
+  if (balance >= currentBet) {
+    balance -= currentBet;
+    currentBet *= 2;
   playerHand.push(shuffledDeck.pop());
-  playerStand();
+  playerTotal = getHandValue(playerHand);
+  if (playerTotal > 21) {
+    checkWinner();
+  } else {
+    playerStand();
+  }
+  } else {
+    handOutcome = 'YB';
+  }
+  render();
 }
 
 function playerStand() {
