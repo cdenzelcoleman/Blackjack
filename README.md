@@ -1,46 +1,40 @@
-## Initialization
-Initialize Variables: Set up player balance, shuffled deck, dealer hand, player hand, etc.
+# ![Blackjack Logo](https://i.imgur.com/PFvKUql.png)
 
-Render Initial Card Backs: Display two face-down cards each for dealer and player.
+Welcome to **Blackjack**! This project is an online version of the Blackjack card game, implemented using HTML, CSS, and JavaScript.
 
-Display Message: Prompt player to place a bet.
+## About the Project
+**Blackjack** is a simple game that you can play directly in your browser suitable for those who enjoy casual card games.
 
-## Place Bet
-Check Balance: Ensure player has enough balance for the bet amount.
+## Features
+- **Classic Blackjack Mechanics**: Play against the dealer with standard Blackjack rules.
+- **Betting System**: Start with a balance of $5000 and place bets for each round.
+- **User Controls**: Use buttons to "Hit", "Stand", or "Double Down".
+- **Card and Score Display**: See your cards, dealer's cards, and running totals on screen.
 
-Update Balance and Current Bet: Deduct bet from balance and update current bet amount.
+## Installation
+To get started with the project, simply go to provided URL
+<!-- Provide URL here -->
 
-Start Game: If a bet is placed successfully, call startGame().
+## Usage
+1. **Place a Bet**: Use the available bet buttons to place a wager for the round.
+2. **Deal Cards**: Click the "Deal" button to start the round and receive your cards.
+3. **Make Your Move**: Click "Hit" to take another card, "Stand" to hold your hand, or "Double Down" to double your bet and take one more card.
+4. **Win or Lose**: The game will determine if you win, lose, or push based on your hand and the dealer's hand.
 
-## Start Game 
-Check Bet: Verify a bet has been placed before starting.
+## Game Rules
+- **Goal**: Get a hand total as close to 21 as possible without going over.
+- **Card Values**: Number cards are worth their value, face cards are worth 10, and Aces can be 1 or 11.
+- **Dealer Rules**: The dealer must draw until reaching 17 or higher.
 
-Deal Cards: Deal two cards each to player and dealer.
+## Technologies Used
+- **HTML**: Structure of the game interface.
+- **CSS**: Styling for the cards, buttons, and overall look of the game.
+- **JavaScript**: Game logic, including card dealing, player decisions, and balance management.
 
-Display Cards: Render player cards and display dealer's face-down card.
+## Future Improvements
+- **Split and Insurance Options**: Adding more complex actions like split and insurance for an enhanced gameplay experience.
+- **Card Animations**: Adding animations to make the dealing process more visually appealing.
+- **Improved UI/UX**: Enhancing the user interface for a more immersive experience.
 
-Player Action: Show "Hit" or "Stand" buttons.
-
-## Player Hit
-Deal a Card to Player: Add one card to player's hand.
-
-Check for Bust: If player's hand value exceeds 21, end game with a message that dealer wins.
-
-Player Stand
-Switch Turn to Dealer: Update turn to dealer.
-
-## Dealer's Play
-Draw Cards: Dealer continues drawing until hand value reaches at least 17.
-
-Render Cards: Display dealer's cards after each draw.
-
-Check Winner: Determine the winner based on player and dealer hand values.
-
-## End Game
-Display Outcome Message: Announce whether player wins, loses, or ties.
-
-Update Balance: Add winnings if player wins, or deduct the bet if player loses.
-
-Reset Current Bet: Set the current bet to zero.
-
-Prompt Restart: Show restart button to begin new round.
+# 🎉
+**Have fun!** 
