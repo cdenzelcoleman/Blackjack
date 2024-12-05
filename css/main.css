@@ -11,22 +11,20 @@ body {
 }
 
 .grid-container {
-  grid-row: 3;
-  grid-template-columns: 3fr;
-  grid-template-rows: max-content;
+  display: grid;
+  grid-template-columns: 1fr 3fr fr;
+  grid-template-rows: auto auto auto auto;
   gap: 50px;
   padding: 5px;
   text-align: center;
   grid-template-areas: "dealer controls" "player controls";
 }
-
-
 .title-header {
   grid-row: 1;
 }
 
 .title-header h1 {
-    font-size: 100px;
+  font-size: 100px;
   color: #f1c40f;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-weight: bold;
@@ -48,7 +46,6 @@ body {
 #hand-active-controls>#dbl-btn:disabled {
   background: gray;
 }
-
 
 .game-container {
 
@@ -87,8 +84,8 @@ body {
 }
 
 .card {
-  width: 160px;
-  height: 190px;
+  width: 100px;
+  height: 140px;
   border-radius: 8px;
   border: 1px solid #ccc;
   background-color: rgb(114, 170, 215);
@@ -195,8 +192,6 @@ button:hover {
   transition: transform 0.1s, box-shadow 0.1s;
 }
 
-
-
 .bet-btn:hover {
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
 }
@@ -208,27 +203,22 @@ button:hover {
 
 .bet-btn[data-amount="10"] {
   background: linear-gradient(to top, #880000, #eeedec);
-
 }
 
 .bet-btn[data-amount="20"] {
   background: linear-gradient(to top, #7cc261, #696666);
-
 }
 
 .bet-btn[data-amount="50"] {
   background: linear-gradient(to top, #002b88, #eeedec);
-
 }
 
 .bet-btn[data-amount="100"] {
   background: linear-gradient(to top, #000000, #eeedec);
-
 }
 
 .bet-btn[data-amount="500"] {
   background: linear-gradient(to top, #5b0088, #eeedec);
-
 }
 
 #hand-active-controls button {
@@ -259,7 +249,7 @@ button:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
 }
 
-#player-total{
+#player-total {
   display: flex;
   /* justify-content: space-around; */
   font-size: 2.5em;
@@ -277,13 +267,4 @@ button:hover {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin-top: 10px;
   font-family: 'Atma', sans-serif;
-}
-
-#current-bet {
-  margin-bottom: 20px;
-  margin: 2%;
-}
-#balance {
-  margin-top: 20px; 
-  margin: 2%;
 }

@@ -30,12 +30,12 @@
     </header>
 
     <div class='game-container'>
+
       <div class='dealer-section'>
         <h3>Dealer's Hand</h3>
         <section id='dealer-hand' class='card-container'></section>
         <h3>Dealer's Total: <span id="dealer-total">0</span> </h3>
       </div>
-
 
       <div class='player-section'>
         <h3>Your Hand</h3>
@@ -44,20 +44,16 @@
       </div>
 
       <div class="controls">
-
+        <button id="deal-btn">Deal</button>
         <div id="hand-active-controls">
           <button id="hit-btn">Hit</button>
           <button id="dbl-btn">Double Down</button>
           <button id="stand-btn">Stand</button>
         </div>
 
-        <button id="deal-btn">Deal</button>
-
       </div>
 
       <div class='betting-container'>
-
-
         <h2>Current Bet: $<span id='current-bet'>0</span></h2>
         <div id='betting-controls'>
           <h2>CHIPS!</h2>
@@ -67,9 +63,12 @@
           <button class='bet-btn' data-amount='20'>$20</button>
           <button class='bet-btn' data-amount='10'>$10</button>
         </div>
+
         <h2>Balance: $<span id='balance'>5000</span></h2>
       </div>
+
     </div>
+    
 </body>
 
 </html>

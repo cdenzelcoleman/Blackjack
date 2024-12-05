@@ -49,8 +49,6 @@ document.querySelectorAll('.bet-btn').forEach(button => {
 /*----- functions -----*/
 initGame();
 
-
-
 function placeBet(evt) {
   const betAmount = parseInt(evt.target.dataset.amount);
   currentBet += betAmount; {
@@ -171,6 +169,7 @@ function playerHit() {
     render();
   }
 }
+
 function doubleDown() {
   if (balance >= currentBet) {
     balance -= currentBet;
