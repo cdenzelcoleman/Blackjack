@@ -34,6 +34,8 @@ const handActiveControlsEl = document.getElementById('hand-active-controls');
 const bettingControlsEl = document.getElementById('betting-controls');
 const dealBtn = document.getElementById('deal-btn');
 const dblBtn = document.getElementById('dbl-btn');
+const dealerTotalEl = document.getElementById('dealer-total');
+const playerTotalEl = document.getElementById('player-total');
 
 /*----- event listeners -----*/
 document.getElementById('hit-btn').addEventListener('click', playerHit);
@@ -104,6 +106,7 @@ function render() {
   renderBetDisplay();
   renderMessage();
   renderControls();
+  renderTotals();
   checkBetAmnt();
   checkEndGame();
 }
@@ -114,6 +117,16 @@ function renderControls() {
   dblBtn.disabled = playerHand.length > 2;
   bettingControlsEl.style.display = handInPlay ? 'none' : 'initial';
   handActiveControlsEl.style.display = handInPlay ? 'initial' : 'none';
+}
+
+function renderTotals() {
+  playerTotalEl.textContent = getHandValue(playerHand)
+  if (!handOutcome) {
+    dealerTotalEl.textContent = getHandValue([dealerHand[0]]);
+  } else {
+    dealerTotalEl.textContent = getHandValue(dealerHand);
+  }
+
 }
 
 function renderMessage() {
@@ -134,6 +147,8 @@ function renderHand(hand, container, isDealerHand) {
   let cardsHtml = '';
   hand.forEach(function (card, idx) {
     if (isDealerHand && !handOutcome && idx === 0) {
+      cardsHtml += `<div class="card ${card.face}"></div>`;
+    } else if (isDealerHand && !handOutcome && idx === 1) {
       cardsHtml += `<div class="card back"></div>`;
     } else {
       cardsHtml += `<div class="card ${card.face}"></div>`;
@@ -166,6 +181,7 @@ function doubleDown() {
       checkWinner();
     } else {
       playerStand();
+
     }
   } else {
     handOutcome = 'YB';

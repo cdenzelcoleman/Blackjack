@@ -10,26 +10,36 @@ body {
   color: #ecf0f1;
 }
 
-.title-header h1 {
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto auto;
+  gap: 20px;
+  padding: 20px;
   text-align: center;
-  font-size: 100px;                    
-  color: #f1c40f;                    
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+}
+
+.title-header {
+  grid-row: 1;
+}
+
+.title-header h1 {
+  font-size: 100px;
+  color: #f1c40f;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-weight: bold;
-  font-family: 'Barrio', sans-serif; 
+  font-family: 'Barrio', sans-serif;
 }
 
 .title-header h3#message {
-  display: flex;
-  justify-content: space-around;
-  font-size: 1.5em;              
+  font-size: 1.5em;
   color: #ddd911;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);                 
-  margin-top: 10px;               
-  font-family: 'Atma', sans-serif;  
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-top: 10px;
+  font-family: 'Atma', sans-serif;
 }
 
-#hand-active-controls > #dbl-btn:disabled {
+#hand-active-controls>#dbl-btn:disabled {
   background: gray;
 }
 
@@ -45,7 +55,7 @@ body {
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content:center;
+  justify-content: center;
   border: 4px dotted gray;
   padding: 10px;
   margin: 20px;
@@ -86,7 +96,7 @@ body {
 
 button {
   display: flex;
-  align-items:center;
+  align-items: center;
   justify-content: center;
   margin: 10px auto;
   padding: 10px 20px;
@@ -106,38 +116,44 @@ button:hover {
 }
 
 .controls {
+  grid-area: controls;
+  flex-direction: column;
   display: flex;
+  align-items: center;
   text-align: center;
   margin-top: 20px;
-  border: 4px transparent #ef0764; 
+  border: 4px transparent #ef0764;
 }
 
 .player-section {
+  grid-row: 4;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center; 
+  text-align: center;
 }
 
 .dealer-section {
+  grid-row: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center; 
+  text-align: center;
 }
+
 #deal-btn {
   display: flex;
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  border: 3px solid #34495e;  
-  font-size: 16px;       
-  font-weight: bold;      
-  color: #fff; 
+  border: 3px solid #34495e;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
   cursor: pointer;
   outline: none;
-  background: linear-gradient(to top, #ff3333, #ff6666); 
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4); 
+  background: linear-gradient(to top, #ff3333, #ff6666);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
   transition: transform 0.1s, box-shadow 0.1s;
 }
 
@@ -146,81 +162,91 @@ button:hover {
   display: flex;
   text-align: center;
   justify-content: center;
-  border-radius: 0% ;
+  border-radius: 0%;
 }
+
+.betting-container {
+  grid-area: betting;
+  text-align: center;
+}
+
 .bet-btn {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 3px solid #34495e;  
-  font-size: 16px;       
-  font-weight: bold;      
-  color: #fff; 
+  border: 3px solid #34495e;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
   cursor: pointer;
   outline: none;
-  background: linear-gradient(to top, #ff3333, #ff6666); 
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4); 
+  background: linear-gradient(to top, #ff3333, #ff6666);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
   transition: transform 0.1s, box-shadow 0.1s;
 }
 
 
 
 .bet-btn:hover {
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6); 
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
 }
 
 .bet-btn:active {
-  transform: translateY(4px);   
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);  
+  transform: translateY(4px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
 }
 
 .bet-btn[data-amount="10"] {
-  background: linear-gradient(to top, #880000, #eeedec); 
-  
+  background: linear-gradient(to top, #880000, #eeedec);
+
 }
+
 .bet-btn[data-amount="20"] {
-  background: linear-gradient(to top, #7cc261, #696666); 
-  
+  background: linear-gradient(to top, #7cc261, #696666);
+
 }
+
 .bet-btn[data-amount="50"] {
-  background: linear-gradient(to top, #002b88, #eeedec); 
-  
+  background: linear-gradient(to top, #002b88, #eeedec);
+
 }
+
 .bet-btn[data-amount="100"] {
-  background: linear-gradient(to top, #000000, #eeedec); 
-  
+  background: linear-gradient(to top, #000000, #eeedec);
+
 }
+
 .bet-btn[data-amount="500"] {
-  background: linear-gradient(to top, #5b0088, #eeedec); 
-  
+  background: linear-gradient(to top, #5b0088, #eeedec);
+
 }
 
 #hand-active-controls button {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 120px;                
-  height: 50px;                
-  border-radius: 25px;          
-  border: 2px solid #34495e;   
-  font-size: 18px;              
-  font-weight: bold;            
-  color: #ffffff;             
-  background: linear-gradient(to bottom, #db8a34, #b92963);   
+  width: 120px;
+  height: 50px;
+  border-radius: 25px;
+  border: 2px solid #34495e;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  background: linear-gradient(to bottom, #db8a34, #b92963);
   cursor: pointer;
   outline: none;
   transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);  
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
 }
 
 #hand-active-controls button:hover {
-  background: linear-gradient(to bottom, #5dade2, #2980b9);   
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);  
+  background: linear-gradient(to bottom, #5dade2, #2980b9);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
 }
 
 #hand-active-controls button:active {
-  transform: translateY(4px);     
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);  
+  transform: translateY(4px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
 }
 
 #restart-btn {
@@ -229,13 +255,24 @@ button:hover {
   text-align: center;
   height: 35px;
   border-radius: 0%;
-  border: 3px solid #86abd1;  
-  font-size: 16px;       
-  font-weight: bold;      
-  color: #fff; 
+  border: 3px solid #86abd1;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
   cursor: pointer;
   outline: none;
-  background: linear-gradient(to top, #93abab, #65b1cd); 
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4); 
+  background: linear-gradient(to top, #93abab, #65b1cd);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
   transition: transform 0.1s, box-shadow 0.1s;
+}
+
+#player-total,
+#dealer-total {
+  display: flex;
+  justify-content: space-around;
+  font-size: 2.5em;
+  color: #47460a;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-top: 10px;
+  font-family: 'Atma', sans-serif;
 }
