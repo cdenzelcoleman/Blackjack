@@ -114,7 +114,7 @@ function renderControls() {
   dealBtn.style.display = !handInPlay && currentBet >= 10 ? 'initial' : 'none';
   dblBtn.disabled = playerHand.length > 2;
   bettingControlsEl.style.display = handInPlay ? 'none' : 'initial';
-  handActiveControlsEl.style.display = handInPlay ? 'initial' : 'none';
+  handActiveControlsEl.style.display = handInPlay ? 'flex' : 'none';
 }
 
 function renderTotals() {

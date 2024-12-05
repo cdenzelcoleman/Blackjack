@@ -1,6 +1,10 @@
 # ![Blackjack Logo](https://i.imgur.com/PFvKUql.png)
 
-Welcome to **Blackjack**! This project is an online version of the Blackjack card game, implemented using HTML, CSS, and JavaScript.
+Welcome to **Blackjack**! This project is an online version of the Blackjack card game, implemented using: 
+- HTML
+- CSS
+- JavaScript
+- CardStarter CSS Library
 
 ## About the Project
 **Blackjack** is a simple game that you can play directly in your browser suitable for those who enjoy casual card games.
@@ -13,7 +17,7 @@ Welcome to **Blackjack**! This project is an online version of the Blackjack car
 
 ## Installation
 To get started with the project, simply go to provided URL
-<!-- Provide URL here -->
+https://cdenzelcoleman.github.io/Blackjack/
 
 ## Usage
 1. **Place a Bet**: Use the available bet buttons to place a wager for the round.

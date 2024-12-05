@@ -3,24 +3,15 @@
 }
 
 body {
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
   font-family: 'Atma', sans-serif;
   background: linear-gradient(to top, #72e67e, #042f15);
   background-color: #094c09fb;
   color: #ecf0f1;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 3fr fr;
-  grid-template-rows: auto auto auto auto;
-  gap: 50px;
-  padding: 5px;
-  text-align: center;
-  grid-template-areas: "dealer controls" "player controls";
-}
-.title-header {
-  grid-row: 1;
 }
 
 .title-header h1 {
@@ -29,10 +20,8 @@ body {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-weight: bold;
   font-family: 'Barrio', sans-serif;
-}
-
-.title-header h3#message {
-  grid-row: auto;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 .title-header h3#message {
@@ -41,28 +30,22 @@ body {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin-top: 5px;
   font-family: 'Atma', sans-serif;
+  text-align: center;
 }
 
 #hand-active-controls>#dbl-btn:disabled {
   background: gray;
 }
 
-.game-container {
-
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  text-align: justify;
-}
-
 .card-container {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   border: 4px dotted gray;
   padding: 10px;
   margin: 20px;
   min-height: 100px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 #dealer-hand {
@@ -119,7 +102,6 @@ button:hover {
 }
 
 .controls {
-  grid-area: controls;
   flex-direction: row;
   display: flex;
   align-items: center;
@@ -129,7 +111,6 @@ button:hover {
 }
 
 .player-section {
-  grid-row: 4;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -137,7 +118,6 @@ button:hover {
 }
 
 .dealer-section {
-  grid-row: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -171,9 +151,9 @@ button:hover {
 
 .betting-container {
   display: flex;
-  flex-wrap: wrap;
-  grid-row: auto;
-  grid-area: betting;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
@@ -190,6 +170,8 @@ button:hover {
   background: linear-gradient(to top, #ff3333, #ff6666);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
   transition: transform 0.1s, box-shadow 0.1s;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .bet-btn:hover {
@@ -219,6 +201,12 @@ button:hover {
 
 .bet-btn[data-amount="500"] {
   background: linear-gradient(to top, #5b0088, #eeedec);
+}
+
+#hand-active-controls {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
 }
 
 #hand-active-controls button {
@@ -255,16 +243,18 @@ button:hover {
   font-size: 2.5em;
   color: #47460a;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  margin-top: 10px;
+  margin-top: 0px;
+  margin-bottom: 0;
   font-family: 'Atma', sans-serif;
 }
 
 #dealer-total {
   display: flex;
-  /* justify-content: space-around; */
+  justify-content: space-around;
   font-size: 2.5em;
   color: #47460a;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  margin-top: 10px;
+  margin-top: 0px;
+  margin-bottom: 0;
   font-family: 'Atma', sans-serif;
 }
