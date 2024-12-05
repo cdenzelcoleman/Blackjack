@@ -11,20 +11,22 @@ body {
 }
 
 .grid-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto auto auto auto;
-  gap: 20px;
-  padding: 20px;
+  grid-row: 3;
+  grid-template-columns: 3fr;
+  grid-template-rows: max-content;
+  gap: 50px;
+  padding: 5px;
   text-align: center;
+  grid-template-areas: "dealer controls" "player controls";
 }
+
 
 .title-header {
   grid-row: 1;
 }
 
 .title-header h1 {
-  font-size: 100px;
+    font-size: 100px;
   color: #f1c40f;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-weight: bold;
@@ -32,10 +34,14 @@ body {
 }
 
 .title-header h3#message {
+  grid-row: auto;
+}
+
+.title-header h3#message {
   font-size: 1.5em;
   color: #ddd911;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  margin-top: 10px;
+  margin-top: 5px;
   font-family: 'Atma', sans-serif;
 }
 
@@ -94,7 +100,7 @@ body {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-button {
+.button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,7 +123,7 @@ button:hover {
 
 .controls {
   grid-area: controls;
-  flex-direction: column;
+  flex-direction: row;
   display: flex;
   align-items: center;
   text-align: center;
@@ -143,6 +149,7 @@ button:hover {
 
 #deal-btn {
   display: flex;
+  flex-direction: row;
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -166,6 +173,9 @@ button:hover {
 }
 
 .betting-container {
+  display: flex;
+  flex-wrap: wrap;
+  grid-row: auto;
   grid-area: betting;
   text-align: center;
 }
@@ -249,30 +259,31 @@ button:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
 }
 
-#restart-btn {
+#player-total{
   display: flex;
-  justify-content: space-around;
-  text-align: center;
-  height: 35px;
-  border-radius: 0%;
-  border: 3px solid #86abd1;
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff;
-  cursor: pointer;
-  outline: none;
-  background: linear-gradient(to top, #93abab, #65b1cd);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
-  transition: transform 0.1s, box-shadow 0.1s;
-}
-
-#player-total,
-#dealer-total {
-  display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   font-size: 2.5em;
   color: #47460a;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin-top: 10px;
   font-family: 'Atma', sans-serif;
+}
+
+#dealer-total {
+  display: flex;
+  /* justify-content: space-around; */
+  font-size: 2.5em;
+  color: #47460a;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-top: 10px;
+  font-family: 'Atma', sans-serif;
+}
+
+#current-bet {
+  margin-bottom: 20px;
+  margin: 2%;
+}
+#balance {
+  margin-top: 20px; 
+  margin: 2%;
 }
