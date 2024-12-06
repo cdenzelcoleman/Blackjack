@@ -207,7 +207,7 @@ button:hover {
 
 #hand-active-controls {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
 }
 
@@ -261,22 +261,3 @@ button:hover {
   padding-bottom: 0;
   font-family: 'Atma', sans-serif;
 }
-
-/* #current-bet {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  text-align: center;
-  margin-top: -1.2cap;
-  margin-bottom: -1.5cap;
-}
-
-#balance {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  text-align: center;
-  margin-top: -.9cap;
-  margin-bottom: -.9cap;
- 
-} */
