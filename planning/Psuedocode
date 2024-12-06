@@ -1,0 +1,30 @@
+1. Initialize Game
+   - Create a deck of cards
+   - Shuffle the deck
+   - Set initial player and dealer hands to empty
+
+2. Display Title and Betting Area
+   - Show "Blackjack" title and instructions
+   - Show betting buttons
+   - Allow player to place a bet and update balance
+
+3. Deal Cards
+   - Deal two cards each to player and dealer
+   - Show both player cards and one dealer card
+   - Calculate initial values for player and dealer
+
+4. Player's Turn
+   - Show "Hit", "Stand", and "Double Down" buttons
+   - Player chooses action:
+     - Hit: Deal one card to player, check if player busts
+     - Double Down: Increase bet, deal one card to player, end turn
+     - Stand: End player's turn
+
+5. Dealer's Turn
+   - Reveal dealer's second card
+   - Dealer draws until total is at least 17
+
+6. Determine Winner
+   - Compare player and dealer totals
+   - Update balance based on outcome
+   - Display outcome message

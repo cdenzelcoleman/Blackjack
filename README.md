@@ -5,6 +5,7 @@ Welcome to **Blackjack**! This project is an online version of the Blackjack car
 - CSS
 - JavaScript
 - CardStarter CSS Library
+- Favicon
 
 ## About the Project
 **Blackjack** is a simple game that you can play directly in your browser suitable for those who enjoy casual card games.
@@ -38,7 +39,16 @@ https://cdenzelcoleman.github.io/Blackjack/
 ## Future Improvements
 - **Split and Insurance Options**: Adding more complex actions like split and insurance for an enhanced gameplay experience.
 - **Card Animations**: Adding animations to make the dealing process more visually appealing.
-- **Improved UI/UX**: Enhancing the user interface for a more immersive experience.
+- **Improved UI/UX**: Enhancing the user interface for a more enjoyable interactive experience.
+- **Music/SoundFX**: Creating an immersive experience by adding sounds of card shuffling and casino music vibes.
+
+**Favicon** provided by using the following graphics from Twitter Twemoji:
+
+- Graphics Title: 2660.svg
+- Graphics Author: Copyright 2020 Twitter, Inc and other contributors (https://github.com/twitter/twemoji)
+- Graphics Source: https://github.com/twitter/twemoji/blob/master/assets/svg/2660.svg
+- Graphics License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+
 
 # 🎉
 **Have fun!** 
