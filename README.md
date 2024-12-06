@@ -18,7 +18,7 @@ Welcome to **Blackjack**! This project is an online version of the Blackjack car
 
 ## Installation
 To get started with the project, simply go to provided URL
-https://cdenzelcoleman.github.io/Blackjack/
+[Click to Play!](https://cdenzelcoleman.github.io/Blackjack/)
 
 ## Usage
 1. **Place a Bet**: Use the available bet buttons to place a wager for the round.
@@ -52,3 +52,12 @@ https://cdenzelcoleman.github.io/Blackjack/
 
 # 🎉
 **Have fun!** 
+
+
+![Blackjack Logo](https://i.imgur.com/RTSCrXJ.png)
+
+![Blackjack Logo](https://i.imgur.com/VC8jAi8.png) 
+
+![Blackjack Logo](https://i.imgur.com/sUr9BmE.png)
+
+![Blackjack Logo](https://i.imgur.com/IxXDkMM.png)
